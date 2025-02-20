@@ -1,5 +1,6 @@
 import { db } from "@/lib/prisma";
 
+import ProductDetails from "./components/product-details";
 import ProductHeader from "./components/product-header";
 
 interface ProductPageProps {
@@ -8,7 +9,18 @@ interface ProductPageProps {
 
 const ProductPage = async ({ params }: ProductPageProps) => {
   const { slug, productId } = await params;
-  const product = await db.product.findUnique({ where: { id: productId } });
+  const product = await db.product.findUnique({ 
+    where: { id: productId }, 
+    include: { 
+      restaurant: {
+        select: { 
+          avatarImageUrl: true, 
+          name: true,
+          slug: true,
+        },
+      } 
+    } 
+  });
 
   if (!product) {
     return {
@@ -16,12 +28,16 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     };
   }
 
+  if (product.restaurant.slug.toUpperCase() !== slug.toUpperCase()) {
+    return {
+      notFound: true,
+    };
+  }
+
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <ProductHeader product={product} />
-      <h1>Product Page</h1>
-      <p>{slug}</p>
-      <p>{productId}</p>
+      <ProductDetails product={product} />
     </div>
   );
 };
