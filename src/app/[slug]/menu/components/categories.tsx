@@ -29,9 +29,8 @@ type MenuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
 }>;
 
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
-  const [selectedCategory, setSelectedCategory] = useState<MenuCategoriesWithProducts>(
-    restaurant.menuCategories[0],
-  );
+  const [selectedCategory, setSelectedCategory] =
+    useState<MenuCategoriesWithProducts>(restaurant.menuCategories[0]);
   const handleCategoryClick = (category: MenuCategoriesWithProducts) => {
     setSelectedCategory(category);
   };
@@ -76,7 +75,7 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
-        <h3 className="px-3 font-semibold pt-8">{selectedCategory.name}</h3>
+      <h3 className="px-3 pt-8 font-semibold">{selectedCategory.name}</h3>
       <Products products={selectedCategory.products} />
     </div>
   );

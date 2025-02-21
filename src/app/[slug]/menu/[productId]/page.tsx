@@ -9,17 +9,17 @@ interface ProductPageProps {
 
 const ProductPage = async ({ params }: ProductPageProps) => {
   const { slug, productId } = await params;
-  const product = await db.product.findUnique({ 
-    where: { id: productId }, 
-    include: { 
+  const product = await db.product.findUnique({
+    where: { id: productId },
+    include: {
       restaurant: {
-        select: { 
-          avatarImageUrl: true, 
+        select: {
+          avatarImageUrl: true,
           name: true,
           slug: true,
         },
-      } 
-    } 
+      },
+    },
   });
 
   if (!product) {

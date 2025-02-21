@@ -16,8 +16,8 @@ const Products = ({ products }: ProductsProps) => {
       {products.map((product) => (
         <Link
           key={product.id}
-          href={`/${slug}/menu/${product.id}`}	
-          className="flex items-center justify-between gap-10 py-3 border-b"
+          href={`/${slug}/menu/${product.id}`}
+          className="flex items-center justify-between gap-10 border-b py-3"
         >
           {/* ESQUERDA */}
           <div>
@@ -25,17 +25,17 @@ const Products = ({ products }: ProductsProps) => {
             <p className="line-clamp-2 text-sm text-muted-foreground">
               {product.description}
             </p>
-            <p className="pt-3 tet-sm font-semibold">
-                {formatCurrency(product.price)}
+            <p className="tet-sm pt-3 font-semibold">
+              {formatCurrency(product.price)}
             </p>
           </div>
           {/* DIREITA */}
           <div className="relative min-h-[82px] min-w-[120px]">
             <Image
-                src={product.imageUrl}
-                alt={product.name}
-                fill
-                className="rounded-lg object-contain"
+              src={product.imageUrl}
+              alt={product.name}
+              fill
+              className="rounded-lg object-contain"
             />
           </div>
         </Link>
