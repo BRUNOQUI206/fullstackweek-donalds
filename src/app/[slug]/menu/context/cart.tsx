@@ -16,8 +16,6 @@ export interface ICartContext {
   addProduct: (product: CartProduct) => void;
   decreaseProductQuantity: (productId: string) => void;
   increaseProductQuantity: (productId: string) => void;
-  removeProduct: (productId: string) => void;
-
 }
 
 export const CartContext = createContext<ICartContext>({
