@@ -34,7 +34,8 @@ type MenuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
   const [selectedCategory, setSelectedCategory] =
     useState<MenuCategoriesWithProducts>(restaurant.menuCategories[0]);
-  const { products, total, toggleCart, totalQuantity } = useContext(CartContext);
+  const { products, total, toggleCart, totalQuantity } =
+    useContext(CartContext);
   const handleCategoryClick = (category: MenuCategoriesWithProducts) => {
     setSelectedCategory(category);
   };
@@ -42,7 +43,7 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
     return selectedCategory.id === category.id ? "default" : "secondary";
   };
   return (
-    <div className="nt-[-1.Srem] relative z-50 rounded-tl-3xl bg-white">
+    <div className="nt-[-1.Srem] relative z-50 rounded-tl-3xl bg-white pb-16">
       <div className="p-5">
         <div className="flex items-center gap-3">
           <Image
